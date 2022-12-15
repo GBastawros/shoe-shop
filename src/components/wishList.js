@@ -6,15 +6,10 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 
-
 // import dependancies
-import React, { useContext } from 'react'
-import { RetrieveContext } from '../context/retrieveContext'
-import Item from './item'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import Container from 'react-bootstrap/Container'
-useContext(RetrieveContext)
+const WishList = () => {
+    console.log("WishList was called!")
+    const {data} = useContext(RetrieveContext)
     const loadData = data.result.read()
 
     const display = loadData.map((item,index) => {
