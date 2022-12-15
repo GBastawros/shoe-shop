@@ -1,4 +1,4 @@
-// inport dependancies
+// import dependancies
 import React, { useContext } from 'react'
 import { RetrieveContext } from '../context/retrieveContext'
 import Item from './item'
@@ -7,13 +7,18 @@ import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 
 
-const WishList = () => {
-    const retrieve = useContext(RetrieveContext)
-   
-    const data = retrieve.data
+// import dependancies
+import React, { useContext } from 'react'
+import { RetrieveContext } from '../context/retrieveContext'
+import Item from './item'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import Container from 'react-bootstrap/Container'
+useContext(RetrieveContext)
     const loadData = data.result.read()
 
     const display = loadData.map((item,index) => {
+        console.log(item)
         return (
             <Col key={index} style={{display:'flex', justifyContent: 'space-around'}}>
                 <Item item={item} key={index} />
