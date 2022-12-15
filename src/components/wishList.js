@@ -9,7 +9,7 @@ import Container from 'react-bootstrap/Container'
 
 const WishList = () => {
     const retrieve = useContext(RetrieveContext)
-    retrieve.handleRetrieve()
+   
     const data = retrieve.data
     const loadData = data.result.read()
 

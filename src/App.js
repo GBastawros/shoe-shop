@@ -1,14 +1,14 @@
 
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
-import React, {useRef, useState, Suspense} from 'react';
+import React, { useRef, useState, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import SearchBar from './components/searchBar';
 import { SearchContext } from './context/searchContext';
 import { DataContext } from './context/dataContext';
 import { RetrieveContext } from './context/retrieveContext';
-import { createResource as fetchData} from './helper';
-import { createResource as fetchRetrieve} from './retrieveHelper';
+import { createResource as fetchData } from './helper';
+import { createResource as fetchRetrieve } from './retrieveHelper';
 import Spinner from './components/spinner';
 import ItemCard from './components/itemCard';
 import NaviBar from './components/NaviBar';
@@ -19,8 +19,8 @@ import WishList from './components/wishList';
 
 
 function App() {
-  let [data,setData] = useState(null)
-  let[wishlist,setWishList] = useState(null)
+  let [data, setData] = useState(null)
+  let [wishlist, setWishlist] = useState(null)
   let searchInput = useRef('')
 
   const API_URL = 'https://the-sneaker-database.p.rapidapi.com/search?limit=12&query='
@@ -28,36 +28,29 @@ function App() {
   const handleSearch = (e, term) => {
     e.preventDefault()
     setData(fetchData(term, API_URL))
-    
-}
 
-const handleRetrieve = (e) => {
-  e.preventDefault()
-  setWishList(fetchRetrieve())
-}
+  }
+
+  const handleRetrieve = (e) => {
+    e.preventDefault()
+    setWishlist(fetchRetrieve())
+  }
 
   const renderCards = () => {
-    if(data){
-      return(
+    if (data) {
+      return (
         <Suspense fallback={<Spinner />}>
-          <ItemCard/>
+          <ItemCard />
         </Suspense>
       )
     }
   }
 
   const renderWishList = () => {
-    if(wishlist){
-      return(
+    if (wishlist) {
+      return (
         <Suspense fallback={<Spinner />}>
-          <WishList/>
-        </Suspense>
-      )
-    }else{
-      handleRetrieve()
-      return(
-        <Suspense fallback={<Spinner />}>
-          <WishList/>
+          <WishList />
         </Suspense>
       )
     }
@@ -71,25 +64,26 @@ const handleRetrieve = (e) => {
           term: searchInput,
           handleSearch: handleSearch
         }}>
-          <SearchBar/>
+          <SearchBar />
           <NaviBar />
 
-        
+
         </SearchContext.Provider>
         <DataContext.Provider value={data}>
           {renderCards()}
         </DataContext.Provider>
         <RetrieveContext.Provider value={{
-              data: wishlist,
-              handleRetrieve: handleRetrieve
-          }}>
-        
-        <Routes>
-          <Route path="/" element={<Home/>} />
-          <Route path="/about" element={AboutUs} />
-          <Route path="/contact" element={<ContactUs/>} />
-          <Route path="/wishlist" element={renderWishList()} />
-        </Routes>
+          data: wishlist,
+          handleRetrieve: handleRetrieve
+          
+        }}>
+
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={AboutUs} />
+            <Route path="/contact" element={<ContactUs />} />
+            <Route path="/wishlist" element={<wishList />} />
+          </Routes>
         </RetrieveContext.Provider>
       </Router>
 
