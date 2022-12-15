@@ -5,12 +5,12 @@ const { Schema } = mongoose
 
 
 // links child schema
-const linkSchema = new Schema({
-    goat: String,
-    flightClub: String,
-    stadiumGoods: String
-})
-const Link = mongoose.model('Link', linkSchema)
+// const linkSchema = new Schema({
+//     goat: String,
+//     flightClub: String,
+//     stadiumGoods: String
+// })
+// const Link = mongoose.model('Link', linkSchema)
 
 // wish schema
 const wishSchema = new Schema({
@@ -19,10 +19,11 @@ const wishSchema = new Schema({
     estimatedMarketValue: Number,
     gender: String,
     image: String,
-    link: {
-        type:mongoose,ObjectId,
-        ref: 'Link'
-    },
+    link: [{
+        goat: String,
+        flightClub: String,
+        stadiumGoods: String
+    }],
     name: String,
     releaseDate: String,
     releaseYear: String,
@@ -32,7 +33,4 @@ const wishSchema = new Schema({
     story: String
 })
 
-const Wish = mongoose.model('Wish', wishSchema)
-const doc = await Wish.findOne().populate('link');
-doc.child
-module.exports = Wish
+module.exports = mongoose.model('Wish', wishSchema)

@@ -36,6 +36,7 @@ const Item = (props) => {
                     <Card.Text>   
                     </Card.Text>
                     <Card.Title><h2>Places To Buy</h2></Card.Title>
+                    
                         {props.item.links.stockX ? <Card.Text><a href={props.item.links.stockX}>StockX</a><br/></Card.Text> : '' }
                         {props.item.links.goat ? <Card.Text><a href={props.item.links.goat}>Goat</a><br/></Card.Text> : '' }
                         {props.item.links.flightClub ? <Card.Text><a href={props.item.links.flightClub}>FlightClub</a><br/></Card.Text> : '' }
