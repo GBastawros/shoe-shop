@@ -1,9 +1,10 @@
 const express = require("express");
 const wishListRoutes = express.Router();
 const dbo = require("./models");
-const ObjectId = require("mongodb").ObjectId;
 
 wishListRoutes.post("/add", (req, res) => {
+    // This correctly logs the brand name, so the structure is present
+    console.log("Data "+ req.body.brand) 
     
     dbo.Wish.create(req.body)
     .then(res.send("Hi"))

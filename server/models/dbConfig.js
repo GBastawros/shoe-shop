@@ -1,36 +1,37 @@
 // require mongoose
-const mongoose = require("mongoose");
+const mongoose= require("mongoose");
 // creating shorthand for the Schema constructor
 const { Schema } = mongoose
 
+// wishlist schema
 
-// links child schema
-// const linkSchema = new Schema({
-//     goat: String,
-//     flightClub: String,
-//     stadiumGoods: String
-// })
-// const Link = mongoose.model('Link', linkSchema)
+const linkSchema = new Schema({
+    goat: String,
+    flightClub: String,
+    stadiumGoods: String
+})
 
-// wish schema
+const imageSchema = new Schema({
+    360: Array,
+    original: String,
+    small: String,
+    thumbnail: String
+})
+
 const wishSchema = new Schema({
     brand: String,
     colorway: String,
     estimatedMarketValue: Number,
     gender: String,
-    image: String,git 
-    link: [{
-        goat: String,
-        flightClub: String,
-        stadiumGoods: String
-    }],
+    image: { type: imageSchema },
+    links: { type: linkSchema },
     name: String,
     releaseDate: String,
     releaseYear: String,
     retailPrice: Number,
     silhouette: String,
     sku: String,
-    story: String
+    story: String 
 })
 
 module.exports = mongoose.model('Wish', wishSchema)
