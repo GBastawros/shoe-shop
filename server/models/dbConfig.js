@@ -18,7 +18,7 @@ const wishSchema = new Schema({
     colorway: String,
     estimatedMarketValue: Number,
     gender: String,
-    image: String,
+    image: String,git 
     link: [{
         goat: String,
         flightClub: String,
