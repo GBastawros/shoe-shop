@@ -5,6 +5,8 @@ import Popup from 'reactjs-popup'
 import { RetrieveContext } from '../context/retrieveContext'
 // `https://shoe-shop-661m.vercel.app/wishList/delete/${data._id}`
 
+
+
 const WishItem = (props) => {
     const ref = useRef()
     const closeTooltip = () => ref.current.close()
