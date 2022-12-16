@@ -4,12 +4,9 @@ const dbo = require("./models");
 
 
 wishListRoutes.post("/add", (req, res) => {
-    // This correctly logs the brand name, so the structure is present
-    console.log("Data "+ req.body.brand) 
     
     dbo.Wish.create(req.body)
-    .then(res.send("Hi"))
-    console.log("Hello"+ req.body.brand)
+    .then(res.send("Add Successful"))
    });
 
 wishListRoutes.get("/", async (req, res)=> {
